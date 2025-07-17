@@ -12,8 +12,10 @@ git config --global core.autocrlf true
 최초 버전 생성
 
 ```bash
-git add . # 스테이지 업로드
+git add . # 스테이지 업로드 (스테이징)
+git status # 상태 확인
 git commit -m "message" # 커밋 생성
+git log
 ```
 
 원격 저장소 추가

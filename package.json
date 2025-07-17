@@ -1,0 +1,23 @@
+{
+  "name": "webreboot2",
+  "version": "1.0.0",
+  "description": "버전 관리 시작",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "dev:client": "cd client && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjdduq/repo-web-reboot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wjdduq/repo-web-reboot/issues"
+  },
+  "homepage": "https://github.com/wjdduq/repo-web-reboot#readme"
+}
