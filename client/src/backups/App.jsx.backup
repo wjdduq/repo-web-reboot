@@ -1,0 +1,76 @@
+import { useEffect } from 'react'
+import TodoItem from './components/todos/TodoItem'
+import { useTodoStore } from './stores/todo'
+
+export default function App() {
+  // 화살표 함수 => 매개변수 => 데이터
+  const todos = useTodoStore(function (state) {
+    return state.todos
+  })
+  const text = useTodoStore(s => s.text)
+  const setText = useTodoStore(s => s.setText)
+  const createTodo = useTodoStore(s => s.createTodo)
+  const fetchTodos = useTodoStore(s => s.fetchTodos)
+  const ascending = useTodoStore(s => s.ascending)
+  const descending = useTodoStore(s => s.descending)
+  const setDone = useTodoStore(s => s.setDone)
+
+  useEffect(function () {
+    fetchTodos()
+  }, [])
+
+  return (
+    <>
+      <div>
+        <input
+          type="text"
+          value={text}
+          onChange={function (event) {
+            setText(event.target.value)
+          }}
+          onKeyDown={function (event) {
+            if (event.nativeEvent.isComposing) return
+            if (event.key === 'Enter') createTodo()
+          }}
+        />
+        <button
+          onClick={function () {
+            createTodo()
+          }}>
+          add
+        </button>
+      </div>
+      <div>
+        <button onClick={ascending}>ascending</button>
+        <button onClick={descending}>descending</button>
+        <button
+          onClick={function () {
+            setDone(undefined)
+          }}>
+          all
+        </button>
+        <button
+          onClick={function () {
+            setDone(true)
+          }}>
+          done
+        </button>
+        <button
+          onClick={function () {
+            setDone(false)
+          }}>
+          todo
+        </button>
+      </div>
+      <ul>
+        {todos.map(function (todo) {
+          return (
+            <TodoItem
+              key={todo.id}
+              todo={todo}></TodoItem>
+          )
+        })}
+      </ul>
+    </>
+  )
+}
